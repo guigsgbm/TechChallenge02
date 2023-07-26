@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace WebAPI.Data;
+namespace Shared.Data;
 
 public static class DbInitializer
 {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Shared.Models;
 using WebAPI.DTOs;
 
 namespace WebAPI.Profiles;

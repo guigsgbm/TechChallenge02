@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebAPI.Data;
+using Shared.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +13,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var connection = builder.Configuration.GetConnectionString("AzureDB");
-builder.Services.AddDbContext<ApiDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connection));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApiDbContext>();
+    .AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 

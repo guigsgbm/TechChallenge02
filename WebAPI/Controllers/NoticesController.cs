@@ -1,7 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Data;
+using Shared.Data;
+using Shared.Models;
 using WebAPI.DTOs;
 
 namespace WebAPI.Controllers;
@@ -11,9 +12,9 @@ namespace WebAPI.Controllers;
 public class NoticesController : ControllerBase
 {
     private readonly IMapper _mapper;
-    private readonly ApiDbContext _context;
+    private readonly AppDbContext _context;
 
-    public NoticesController(IMapper mapper, ApiDbContext context)
+    public NoticesController(IMapper mapper, AppDbContext context)
     {
         _mapper = mapper;
         _context = context;

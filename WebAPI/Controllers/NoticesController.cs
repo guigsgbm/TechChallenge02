@@ -37,7 +37,6 @@ public class NoticesController : ControllerBase
         return BadRequest();
     }
 
-    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetNotice(int id)
     {
@@ -49,7 +48,6 @@ public class NoticesController : ControllerBase
         return Ok(notice);
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetNotices()
     {

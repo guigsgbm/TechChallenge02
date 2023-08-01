@@ -30,12 +30,8 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.SeedUsers(userManager, roleManager);
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();

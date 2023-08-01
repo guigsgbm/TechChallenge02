@@ -7,7 +7,7 @@ using Shared.Models;
 
 namespace WebApp.Pages;
 
-[Authorize]
+[Authorize(Roles = "admin")]
 public class DeleteModel : PageModel
 {
     private readonly AppDbContext _context;
@@ -18,40 +18,40 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public Notice Notice { get; set; } = default!;
+    public News News { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-        if (id == null || _context.Notices == null)
+        if (id == null || _context.News == null)
         {
             return NotFound();
         }
 
-        var notice = await _context.Notices.FirstOrDefaultAsync(m => m.Id == id);
+        var news = await _context.News.FirstOrDefaultAsync(m => m.Id == id);
 
-        if (notice == null)
+        if (news == null)
         {
             return NotFound();
         }
         else
         {
-            Notice = notice;
+            News = news;
         }
         return Page();
     }
 
     public async Task<IActionResult> OnPostAsync(int? id)
     {
-        if (id == null || _context.Notices == null)
+        if (id == null || _context.News == null)
         {
             return NotFound();
         }
-        var notice = await _context.Notices.FindAsync(id);
+        var news = await _context.News.FindAsync(id);
 
-        if (notice != null)
+        if (news != null)
         {
-            Notice = notice;
-            _context.Notices.Remove(Notice);
+            News = news;
+            _context.News.Remove(News);
             await _context.SaveChangesAsync();
         }
 

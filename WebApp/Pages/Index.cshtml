@@ -14,34 +14,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Notice[0].Titulo)
+                @Html.DisplayNameFor(model => model.News[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Notice[0].Descricao)
+                @Html.DisplayNameFor(model => model.News[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Notice[0].DataPublicacao)
+                @Html.DisplayNameFor(model => model.News[0].PublishDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Notice[0].Autor)
+                @Html.DisplayNameFor(model => model.News[0].Author)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Notice) {
+@foreach (var item in Model.News) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataPublicacao)
+                @Html.DisplayFor(modelItem => item.PublishDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Autor)
+                @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

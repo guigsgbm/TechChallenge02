@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shared.Models;
 using Shared.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Pages;
 
+[Authorize]
 public class CreateModel : PageModel
 {
     private readonly AppDbContext _context;
@@ -20,18 +22,18 @@ public class CreateModel : PageModel
     }
 
     [BindProperty]
-    public Notice Notice { get; set; } = default!;
+    public News News { get; set; } = default!;
 
 
     // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
     public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid || _context.Notices == null || Notice == null)
+        if (!ModelState.IsValid || _context.News == null || News == null)
         {
             return Page();
         }
 
-        _context.Notices.Add(Notice);
+        _context.News.Add(News);
         await _context.SaveChangesAsync();
 
         return RedirectToPage("./Index");

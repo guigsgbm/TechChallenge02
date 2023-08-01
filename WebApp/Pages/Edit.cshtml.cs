@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Shared.Data;
@@ -6,6 +7,7 @@ using Shared.Models;
 
 namespace WebApp.Pages;
 
+[Authorize]
 public class EditModel : PageModel
 {
     private readonly AppDbContext _context;
@@ -16,21 +18,21 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public Notice Notice { get; set; } = default!;
+    public News News { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-        if (id == null || _context.Notices == null)
+        if (id == null || _context.News == null)
         {
             return NotFound();
         }
 
-        var notice = await _context.Notices.FirstOrDefaultAsync(m => m.Id == id);
-        if (notice == null)
+        var news = await _context.News.FirstOrDefaultAsync(m => m.Id == id);
+        if (news == null)
         {
             return NotFound();
         }
-        Notice = notice;
+        News = news;
         return Page();
     }
 
@@ -43,7 +45,7 @@ public class EditModel : PageModel
             return Page();
         }
 
-        _context.Attach(Notice).State = EntityState.Modified;
+        _context.Attach(News).State = EntityState.Modified;
 
         try
         {
@@ -51,7 +53,7 @@ public class EditModel : PageModel
         }
         catch (DbUpdateConcurrencyException)
         {
-            if (!NoticeExists(Notice.Id))
+            if (!NewsExists(News.Id))
             {
                 return NotFound();
             }
@@ -64,8 +66,8 @@ public class EditModel : PageModel
         return RedirectToPage("./Index");
     }
 
-    private bool NoticeExists(int id)
+    private bool NewsExists(int id)
     {
-        return (_context.Notices?.Any(e => e.Id == id)).GetValueOrDefault();
+        return (_context.News?.Any(e => e.Id == id)).GetValueOrDefault();
     }
 }

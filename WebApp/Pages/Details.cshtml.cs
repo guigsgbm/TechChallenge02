@@ -15,23 +15,23 @@ public class DetailsModel : PageModel
         _context = context;
     }
 
-    public Notice Notice { get; set; } = default!;
+    public News News { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int? id)
     {
-        if (id == null || _context.Notices == null)
+        if (id == null || _context.News == null)
         {
             return NotFound();
         }
 
-        var notice = await _context.Notices.FirstOrDefaultAsync(m => m.Id == id);
-        if (notice == null)
+        var news = await _context.News.FirstOrDefaultAsync(m => m.Id == id);
+        if (news == null)
         {
             return NotFound();
         }
         else
         {
-            Notice = notice;
+            News = news;
         }
         return Page();
     }

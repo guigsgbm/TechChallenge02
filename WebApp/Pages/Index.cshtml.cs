@@ -14,13 +14,13 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Notice> Notice { get; set; } = default!;
+    public IList<News> News { get; set; } = default!;
 
     public async Task OnGetAsync()
     {
-        if (_context.Notices != null)
+        if (_context.News != null)
         {
-            Notice = await _context.Notices.ToListAsync();
+            News = await _context.News.ToListAsync();
         }
     }
 }

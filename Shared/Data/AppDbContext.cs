@@ -9,6 +9,6 @@ namespace Shared.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
 
-        public DbSet<Notice>? Notices { get; set; }
+        public DbSet<News>? News { get; set; }
     }
 }

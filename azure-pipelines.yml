@@ -35,7 +35,7 @@ stages:
         containerRegistry: 'acrtechchallenge02'
         repository: 'webapi'
         command: 'build'
-        Dockerfile: 'webApi/Dockerfile'
+        Dockerfile: 'WebAPI/Dockerfile'
         buildContext: '$(System.DefaultWorkingDirectory)'
         tags: |
           $(Build.BuildId)

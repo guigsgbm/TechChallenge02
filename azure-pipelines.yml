@@ -11,7 +11,6 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   group: TechChallenge02
-  dockerRegistryServiceConnection: $(dockerRegistryServiceConnection)
   imageRepository: 'WebApi'
   containerRegistry: 'acrtechchallenge02.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/WebAPI/Dockerfile'

@@ -11,6 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   group: TechChallenge02
+  acrName: 'acrtechchallenge02'
   imageRepository: 'WebApi'
   containerRegistry: 'acrtechchallenge02.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/WebAPI/Dockerfile'
@@ -39,7 +40,7 @@ stages:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(acrName)
         tags: |
           latest
           $(tag)

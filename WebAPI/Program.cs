@@ -36,6 +36,16 @@ app.UseSwaggerUI();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.Use((context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger/index.html");
+        return Task.CompletedTask;
+    }
+    return next();
+});
+
 app.MapControllers();
 
 app.Run();

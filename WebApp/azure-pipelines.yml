@@ -1,0 +1,50 @@
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  group: TechChallenge02
+  acrName: 'acrtechchallenge02'
+  imageRepository: 'WebApp'
+  containerRegistry: 'acrtechchallenge02.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/WebApp/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: FileTransform@1
+      inputs:
+        folderPath: 'WebApp'
+        fileType: 'json'
+        targetFiles: 'appsettings.json'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'acrtechchallenge02'
+        repository: 'webapp'
+        command: 'build'
+        Dockerfile: '$(dockerfilePath)'
+        buildContext: '$(System.DefaultWorkingDirectory)'
+        tags: |
+          $(Build.BuildId)
+          latest
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'acrtechchallenge02'
+        repository: 'webapp'
+        command: 'push'
+        tags: |
+          $(Build.BuildId)
+          latest

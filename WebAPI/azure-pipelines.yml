@@ -7,14 +7,14 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   group: TechChallenge02
-  acrName: 'acrtechchallenge02'
+  aciName: 'aci-webapi'
   imageRepository: 'WebApi'
   containerRegistry: 'acrtechchallenge02.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/WebAPI/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'windows-latest'
 
 stages:
 - stage: Build

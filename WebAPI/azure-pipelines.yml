@@ -6,7 +6,6 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  group: TechChallenge02
   aciName: 'aci-webapi'
   imageRepository: 'WebApi'
   containerRegistry: 'acrtechchallenge02.azurecr.io'
@@ -53,4 +52,4 @@ stages:
         azureSubscription: 'Azure for Students (c0b47b0c-425a-4257-bf4a-1b1051a06839)'
         scriptType: bash
         scriptLocation: 'inlineScript'
-        inlineScript: 'az container restart --name $(aciName) --resource-group $(resourceGroupName)'
+        inlineScript: 'az container restart --name $(aciName) --resource-group $(TechChallenge02.resourceGroupName)'

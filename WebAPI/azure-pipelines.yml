@@ -51,6 +51,6 @@ stages:
     - task: AzureCLI@2
       inputs:
         azureSubscription: 'Azure for Students (c0b47b0c-425a-4257-bf4a-1b1051a06839)'
-        scriptType: ps
+        scriptType: bash
         scriptLocation: 'inlineScript'
         inlineScript: 'az container restart --name $(aciName) --resource-group $(resourceGroupName)'

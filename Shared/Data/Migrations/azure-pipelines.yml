@@ -16,6 +16,15 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
+    - task: FileTransform@1
+      inputs:
+        folderPath: 'WebAPI'
+        fileType: 'json'
+        targetFiles: 'appsettings.json'
+
+    - script: 'dotnet tool install --global dotnet-ef'
+      displayName: 'Install EF CLI'
+      
     - task: DotNetCoreCLI@2
       inputs:
         command: 'custom'

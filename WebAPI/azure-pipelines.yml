@@ -48,9 +48,10 @@ stages:
         scriptType: 'pscore'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          'try {
+          try {
               az container restart --name $(aciName) --resource-group $(resourceGroupName)
           }
           catch {
               Write-Host "Error: $($_.Exception.Message)"
-          }'
+          }
+          

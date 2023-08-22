@@ -16,10 +16,12 @@ Antes de começar, certifique-se de ter o seguinte:
 - Faça login no portal Azure (https://portal.azure.com).
 - Crie um novo servidor SQL e um banco de dados no Azure.
 - Anote as informações de conexão, como a cadeia de conexão e as credenciais, pois serão necessárias posteriormente.
+- Libere os IP's necessários no Firewall antes de realizar o deploy da aplicação
 
 ### 2. Deploy do Azure Container Registry (ACR)
 - No portal Azure, crie um registro de contêineres.
 - Anote o nome do registro e as credenciais de acesso.
+- Habilite a opção "Admin User" na seção "Access keys"
 
 ### 3. Clone o Repositório
 - Abra um terminal e execute o seguinte comando para clonar o repositório do GitHub:

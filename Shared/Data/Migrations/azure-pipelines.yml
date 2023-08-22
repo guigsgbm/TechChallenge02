@@ -22,8 +22,13 @@ stages:
         fileType: 'json'
         targetFiles: 'appsettings.json'
 
-    - script: 'dotnet tool install --global dotnet-ef'
-      displayName: 'Install EF CLI'
+    - powershell: |
+        dotnet tool install --global dotnet-ef
+
+        cd $(System.DefaultWorkingDirectory)
+
+        dotnet ef database update -p .\Shared\Shared.csproj -s .\WebAPI
+      displayName: 'Update Database using EF Core CLI'
       
     - task: DotNetCoreCLI@2
       inputs:

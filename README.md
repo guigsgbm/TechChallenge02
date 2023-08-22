@@ -33,7 +33,7 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - No Azure DevOps, navegue até o seu projeto.
 
-- Crie duas pipelines YAML: uma para a API e outra para o WebApp. Use os arquivos `.yaml` fornecidos no repositório como ponto de partida.
+- Crie três pipelines YAML: uma para a API, outra para o WebApp e outra para o Banco de Dados. Use os arquivos `.yaml` fornecidos no repositório como ponto de partida.
 
 - Ajuste os arquivos YAML conforme necessário para configurar a compilação, teste e implantação de acordo com suas preferências.
 
@@ -47,7 +47,7 @@ Antes de começar, certifique-se de ter o seguinte:
 
 ### 6. Rodar as Pipelines
 
-- Execute as pipelines no Azure DevOps para compilar, testar e implantar a API e o WebApp.
+- Execute as pipelines no Azure DevOps para compilar, testar e implantar o Banco de dados, a API e o WebApp (a de banco de dados precisa rodas antes das demais, para criar a estrutura do banco).
 
 - Certifique-se de que as etapas de implantação estejam configuradas para implantar nos recursos do Azure apropriados, como o Azure App Service para o WebApp.
 

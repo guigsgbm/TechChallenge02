@@ -5,16 +5,7 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  group: TechChallenge02
-  acrName: 'acrtechchallenge02'
-  imageRepository: 'WebApp'
-  containerRegistry: 'acrtechchallenge02.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/WebApp/Dockerfile'
-  tag: '$(Build.BuildId)'
-
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+ - group: 'WebApp'
 
 stages:
 - stage: Build
@@ -23,13 +14,14 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      vmImage: ubuntu-latest
     steps:
     - task: FileTransform@1
       inputs:
         folderPath: 'WebApp'
         fileType: 'json'
         targetFiles: 'appsettings.json'
+
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
@@ -38,13 +30,28 @@ stages:
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(System.DefaultWorkingDirectory)'
         tags: |
-          $(Build.BuildId)
+          $(tag)
           latest
+
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
         repository: 'webapp'
         command: 'push'
         tags: |
-          $(Build.BuildId)
+          $(tag)
           latest
+
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Azure for Students (c0b47b0c-425a-4257-bf4a-1b1051a06839)'
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          try {
+              az container restart --name $(aciName) --resource-group $(resourceGroupName)
+          }
+          catch {
+              Write-Host "Error: $($_.Exception.Message)"
+          }
+          

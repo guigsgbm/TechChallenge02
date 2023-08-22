@@ -21,6 +21,7 @@ stages:
         folderPath: 'WebAPI'
         fileType: 'json'
         targetFiles: 'appsettings.json'
+
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
@@ -31,6 +32,7 @@ stages:
         tags: |
           $(tag)
           latest
+
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
@@ -39,15 +41,10 @@ stages:
         tags: |
           $(tag)
           latest
-    - task: AzurePowerShell@5
+
+    - task: AzureCLI@2
       inputs:
         azureSubscription: 'Azure for Students (c0b47b0c-425a-4257-bf4a-1b1051a06839)'
-        ScriptType: 'InlineScript'
-        Inline: '
-        try {
-              az container restart --name $(aciName) --resource-group $(resourceGroupName)
-          }
-          catch {
-              Write-Host "Error: $($_.Exception.Message)"
-          }'
-        azurePowerShellVersion: 'LatestVersion'
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'aaaaaaaaaaaaaaaaaa'

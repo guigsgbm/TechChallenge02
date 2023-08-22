@@ -44,4 +44,10 @@ stages:
         azureSubscription: 'Azure for Students (c0b47b0c-425a-4257-bf4a-1b1051a06839)'
         scriptType: bash
         scriptLocation: 'inlineScript'
-        inlineScript: 'az container restart --name $(aciName) --resource-group $(resourceGroupName)'
+        inlineScript: '
+          try {
+              az container restart --name $(aciName) --resource-group $(resourceGroupName)
+          }
+          catch {
+              Write-Host "Error: $($_.Exception.Message)"
+          }'

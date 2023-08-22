@@ -1,5 +1,10 @@
 trigger:
-- main
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - Shared/Data/*
 
 resources:
 - repo: self

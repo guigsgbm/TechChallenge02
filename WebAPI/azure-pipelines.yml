@@ -5,15 +5,7 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  aciName: 'aci-webapi'
-  imageRepository: 'WebApi'
-  containerRegistry: 'acrtechchallenge02.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/WebAPI/Dockerfile'
-  tag: '$(Build.BuildId)'
-
-  # Agent VM image name
-  vmImageName: 'windows-latest'
+ - group: 'WebAPI'
 
 stages:
 - stage: Build
@@ -22,7 +14,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      vmImage: windows-latest
     steps:
     - task: FileTransform@1
       inputs:

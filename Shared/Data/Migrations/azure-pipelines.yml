@@ -16,9 +16,17 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
-    - task: DotNetCoreCLI@2
+    - task: FileTransform@1
       inputs:
-        command: 'custom'
-        custom: 'dotnet ef database update'
-        arguments: '-p .\Shared\Shared.csproj -s .\WebAPI'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
+        folderPath: 'WebAPI'
+        fileType: 'json'
+        targetFiles: 'appsettings.json'
+
+    - powershell: |
+        dotnet tool install --global dotnet-ef
+
+        cd $(System.DefaultWorkingDirectory)
+
+        dotnet ef database update -p .\Shared\Shared.csproj -s .\WebAPI
+      displayName: 'Update Database using EF Core CLI'
+      

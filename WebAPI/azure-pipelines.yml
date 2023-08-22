@@ -29,7 +29,7 @@ stages:
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(System.DefaultWorkingDirectory)'
         tags: |
-          $(Build.BuildId)
+          $(tag)
           latest
     - task: Docker@2
       inputs:
@@ -37,7 +37,7 @@ stages:
         repository: 'webapi'
         command: 'push'
         tags: |
-          $(Build.BuildId)
+          $(tag)
           latest
     - task: AzureCLI@2
       inputs:

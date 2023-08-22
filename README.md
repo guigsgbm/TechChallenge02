@@ -37,6 +37,8 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - Ajuste os arquivos YAML conforme necessário para configurar a compilação, teste e implantação de acordo com suas preferências.
 
+- Crie uma Service Connection entre o Azure DevOps e o Azure Container Registry.
+
 ### 5. Configurar Variáveis no Azure DevOps
 
 - Dentro das pipelines YAML, verifique se as variáveis necessárias (se houver) estão configuradas corretamente. Faça os ajustes necessários no arquivo YAML para incluir as variáveis que seu projeto requer.

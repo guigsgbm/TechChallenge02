@@ -30,9 +30,3 @@ stages:
         dotnet ef database update -p .\Shared\Shared.csproj -s .\WebAPI
       displayName: 'Update Database using EF Core CLI'
       
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'custom'
-        custom: 'ef database update'
-        arguments: '-p .\Shared\Shared.csproj -s .\WebAPI'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'

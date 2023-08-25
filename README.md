@@ -61,6 +61,8 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - ### Observações
 
+- As pipelines foram configuradas com o seguinte comportamento: Triggers em pastas específicas acionam pipelines específicas, sempre que uma nova imagem for implantada no ACR, o Container Instance irá ser reinicializado automaticamente via pipeline para atualizar a imagem (por isso utilizar a tag latest).
+
 - No momento que a aplicação é inicializada, um usuário Administrador é criado no banco de dados atráves da classe "Shared/Data/DbInitializer.cs".
 
 - Para registrar usuários "Adm" basta realizar uma chamada post para a API no endpoint "api/account/register", utilizando a conta de adm padrão.

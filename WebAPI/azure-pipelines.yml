@@ -30,7 +30,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
-        repository: 'webapi'
+        repository: '$(acrRepository)'
         command: 'build'
         Dockerfile: '$(dockerfilePath)'
         buildContext: '$(System.DefaultWorkingDirectory)'
@@ -41,7 +41,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'acrtechchallenge02'
-        repository: 'webapi'
+        repository: '$(acrRepository)'
         command: 'push'
         tags: |
           $(tag)

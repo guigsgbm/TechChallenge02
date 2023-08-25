@@ -29,6 +29,8 @@ Antes de começar, certifique-se de ter o seguinte:
   ```bash
   git clone https://github.com/guigsgbm/TechChallenge02.git
 
+- Suba o repositório em algum gerenciador de código de sua preferência (Github, Azure DevOps etc..)
+
 ### 4. Configure as Pipelines no Azure DevOps
 
 - No Azure DevOps, navegue até o seu projeto.

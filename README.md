@@ -61,6 +61,6 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - ### Observações
 
-- No momento que a aplicação é inicializada, um usuário Administrador é criado no banco de dados atráves da classe "Shared/Data/DbInitializer.cs"
+- No momento que a aplicação é inicializada, um usuário Administrador é criado no banco de dados atráves da classe "Shared/Data/DbInitializer.cs".
 
-- Para registrar usuários "Adm" basta realizar uma chamada post para a API no endpoint "api/account/register"
+- Para registrar usuários "Adm" basta realizar uma chamada post para a API no endpoint "api/account/register", utilizando a conta de adm padrão.

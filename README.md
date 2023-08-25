@@ -39,7 +39,7 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - Ajuste os arquivos YAML conforme necessário para configurar a compilação, teste e implantação de acordo com suas preferências.
 
-- Crie uma Service Connection entre o Azure DevOps e o Azure Container Registry.
+- Crie uma Service Connection **Docker Registry** entre o Azure DevOps e o Azure Container Registry.
 
 ### 5. Configurar Variáveis no Azure DevOps
 
@@ -47,14 +47,20 @@ Antes de começar, certifique-se de ter o seguinte:
 
 - Certifique-se de que todas as variáveis de ambiente, segredos ou quaisquer outras configurações específicas do seu projeto estejam definidas nas pipelines do Azure DevOps de acordo com suas necessidades.
 
+- Lembre-se de verificar se as pipelines tem permissão para acessar os grupos de variáveis (Library).
+
 ### 6. Rodar as Pipelines
 
-- Execute as pipelines no Azure DevOps para compilar, testar e implantar o Banco de dados, a API e o WebApp (a de banco de dados precisa rodas antes das demais, para criar a estrutura do banco).
-
-- Certifique-se de que as etapas de implantação estejam configuradas para implantar nos recursos do Azure apropriados, como o Azure App Service para o WebApp.
+- Execute as pipelines no Azure DevOps para compilar, testar e implantar o Banco de dados, a API e o WebApp **(a de banco de dados precisa rodas antes das demais, para criar a estrutura do banco)**.
 
 ### 7. Deploy do Azure Container Instance
 
-- Após a conclusão bem-sucedida das pipelines, você terá uma imagem do contêiner no ACR.
+- Após a conclusão bem-sucedida das pipelines, você terá uma imagem do contêiner no ACR e as tabelas no Azure Database criadas.
 
-- No portal Azure, crie uma instância de contêiner e configure-a para usar a imagem do contêiner criada anteriormente (especificamente a tag "latest").
+- No portal Azure, crie duas instâncias de contêiners (ACI) e configure-as para usar as imagens dos contêiners criadas anteriormente, webapi e webapp (especificamente a tag "latest").
+
+- ### Observações
+
+- No momento que a aplicação é inicializada, um usuário Administrador é criado no banco de dados atráves da classe "Shared/Data/DbInitializer.cs"
+
+- Para registrar usuários "Adm" basta realizar uma chamada post para a API no endpoint "api/account/register"
